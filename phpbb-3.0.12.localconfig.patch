@@ -1,0 +1,15 @@
+diff -ru phpbb-release-3.0.12.orig/phpBB/includes/functions_install.php phpbb-release-3.0.12/phpBB/includes/functions_install.php
+--- phpbb-release-3.0.12.orig/phpBB/includes/functions_install.php	2013-09-28 09:40:10.000000000 -0400
++++ phpbb-release-3.0.12/phpBB/includes/functions_install.php	2014-11-03 15:39:48.108013449 -0500
+@@ -600,7 +600,9 @@
+ 		$config_data .= "@define('DEBUG_TEST', true);\n";
+ 	}
+ 
++        $config_data .= "\n#Allow local overrides that will survive an upgrade\ninclude 'localconfig.php';\n";
++
+ 	return $config_data;
+ }
+ 
+-?>
+\ No newline at end of file
++?>

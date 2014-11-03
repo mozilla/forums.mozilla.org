@@ -1,11 +1,12 @@
 #XXX: Duplicated
-%define 	theme_version 	121491
-%define		phpbb_version	3.0.12
-%define		auth_version	134025
+%define 	theme_version 	%%THEME%%
+%define		phpbb_version	%%PHPBB%%
+%define		auth_version	%%AUTH%%
+%define		build_release	%%RELEASE%%
 
 Name:		forums.mozilla.org
 Version:	%{phpbb_version}
-Release:	1%{?dist}.%{theme_version}.%{auth_version}
+Release:	theme.svn%{theme_version}.auth.svn%{auth_version}.%{build_release}%{?dist}
 Summary:	test
 
 Group:		Websites
@@ -14,9 +15,13 @@ URL:		foo
 Source0:	phpbb-release-%{phpbb_version}.tar.gz
 Source1:	ca_gen2-%{theme_version}.tar.gz
 Source2:	auth_amo-%{auth_version}.php
+Source3:	config.php
+Source4:	localconfig.php
+Patch0:		phpbb-%{phpbb_version}.localconfig.patch
+BuildArch:	noarch
 
 BuildRequires:	rsync
-Requires:	php
+Requires:	php, php-gd, php-mbstring
 
 %description
 
@@ -24,21 +29,29 @@ Requires:	php
 %prep
 %setup -q -n phpbb-release-3.0.12
 %setup -q -T -D -a 1 -n phpbb-release-3.0.12
+%patch -P 0 -p1
 
 %build
+# THis should still be included, but outside of the docroot
+rm -rf phpBB/install
 
 %install
 %{__mkdir_p} %{buildroot}%{_localstatedir}/www/%{name}
 rsync -av ./phpBB/ %{buildroot}%{_localstatedir}/www/%{name}/
 rsync -av ./ca_gen2-%{theme_version}/ %{buildroot}%{_localstatedir}/www/%{name}/styles/ca_gen2/
 cp %{SOURCE2} %{buildroot}%{_localstatedir}/www/%{name}/includes/auth/auth_amo.php
-touch %{buildroot}%{_localstatedir}/www/%{name}/config.php
+cp %{SOURCE3} %{buildroot}%{_localstatedir}/www/%{name}/config.php
+cp %{SOURCE4} %{buildroot}%{_localstatedir}/www/%{name}/localconfig.php
 mkdir %{buildroot}/etc
-ln -s %{_localstatedir}/www/%{name}/config.php %{buildroot}/etc/forums.mozilla.org.conf
+ln -s %{_localstatedir}/www/%{name}/localconfig.php %{buildroot}/etc/forums.mozilla.org.conf
 
 %files
 %doc README.md
 %{_localstatedir}/www/%{name}
+%attr(0750, apache, apache) %{_localstatedir}/www/%{name}/cache
+%attr(0750, apache, apache) %{_localstatedir}/www/%{name}/files
+%attr(0750, apache, apache) %{_localstatedir}/www/%{name}/store
+%attr(0750, apache, apache) %{_localstatedir}/www/%{name}/images/avatars/upload
 %config /etc/forums.mozilla.org.conf
 
 %changelog
