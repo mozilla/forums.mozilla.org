@@ -17,7 +17,7 @@ Source1:	ca_gen2-%{theme_version}.tar.gz
 Source2:	auth_amo-%{auth_version}.php
 Source3:	config.php
 Source4:	localconfig.php
-Patch0:		phpbb-%{phpbb_version}.localconfig.patch
+Patch0:		phpbb-3.0.12.localconfig.patch
 BuildArch:	noarch
 
 BuildRequires:	rsync
@@ -27,8 +27,8 @@ Requires:	php, php-gd, php-mbstring
 
 
 %prep
-%setup -q -n phpbb-release-3.0.12
-%setup -q -T -D -a 1 -n phpbb-release-3.0.12
+%setup -q -n phpbb-release-%{phpbb_version}
+%setup -q -T -D -a 1 -n phpbb-release-%{phpbb_version}
 %patch -P 0 -p1
 
 %build

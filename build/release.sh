@@ -3,7 +3,7 @@
 PHPBB=3.0.12
 THEME=121491
 AUTH=134025
-RELEASE=1
+RELEASE=2
 
 wget -c -O phpbb-release-$PHPBB.tar.gz https://github.com/phpbb/phpbb/archive/release-$PHPBB.tar.gz
 
