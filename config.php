@@ -12,8 +12,6 @@ $acm_type = 'file';
 $load_extensions = 'gd.so';
 
 @define('PHPBB_INSTALLED', true);
-//@define('DEBUG', true);
-//@define('DEBUG_EXTRA', true);
 
 #Allow local overrides that will survive an upgrade
 include 'localconfig.php';

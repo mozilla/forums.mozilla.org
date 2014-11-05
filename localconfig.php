@@ -2,7 +2,7 @@
 
 $dbms = 'mysqli';
 $dbhost = 'localhost';
-$dbport = '';
+$dbport = '3306';
 $dbname = 'forums';
 $dbuser = 'forums';
 $dbpasswd = '';

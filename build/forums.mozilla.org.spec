@@ -6,12 +6,12 @@
 
 Name:		forums.mozilla.org
 Version:	%{phpbb_version}
-Release:	theme.svn%{theme_version}.auth.svn%{auth_version}.%{build_release}%{?dist}
+Release:	%{?rpm_jenkins_job}theme.svn%{theme_version}.auth.svn%{auth_version}.%{build_release}
 Summary:	test
 
 Group:		Websites
 License:	MPL
-URL:		foo
+URL:		https://forums.mozilla.org/
 Source0:	phpbb-release-%{phpbb_version}.tar.gz
 Source1:	ca_gen2-%{theme_version}.tar.gz
 Source2:	auth_amo-%{auth_version}.php

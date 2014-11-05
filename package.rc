@@ -1,0 +1,6 @@
+NAME=forums.mozilla.org
+
+PHPBB=3.0.12
+THEME=121491
+AUTH=134025
+RELEASE=1
