@@ -3,7 +3,7 @@
 BUILD_DIR=`dirname $0`
 cd $BUILD_DIR/..
 
-./build/release.sh --define="rpm_jenkins_job jenkins.1234."
+./build/release.sh --define="rpm_jenkins_job jenkins.$BUILD_NUMBER."
 
 mkdir -p rpms/SRPMS
 mkdir -p rpms/RPMS/noarch
