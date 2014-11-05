@@ -29,7 +29,7 @@ tar zcf forums.mozilla.org.tar.gz forums.mozilla.org.spec ca_gen2-$THEME.tar.gz 
 echo "Building RPM with $*"
 rpmbuild --quiet "$*" -ta forums.mozilla.org.tar.gz 
 
-rm ca_gen2-$THEME.tar.gz phpbb-release-$PHPBB.tar.gz auth_amo-$AUTH.php forums.mozilla.org.tar.gz forums.mozilla.org.spec
+rm ca_gen2-$THEME.tar.gz phpbb-release-$PHPBB.tar.gz auth_amo-$AUTH.php forums.mozilla.org.spec
 
 mv $HOME/rpmbuild/SRPMS/$NAME*.rpm . 
 mv $HOME/rpmbuild/RPMS/noarch/$NAME*.rpm .
