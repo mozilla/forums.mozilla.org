@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -eu
+
 BUILD_DIR=`dirname $0`
 cd $BUILD_DIR/..
 
@@ -26,8 +28,14 @@ cat build/forums.mozilla.org.spec | \
 
 tar zcf forums.mozilla.org.tar.gz forums.mozilla.org.spec ca_gen2-$THEME.tar.gz phpbb-release-$PHPBB.tar.gz auth_amo-$AUTH.php
 
-echo "Building RPM with $*"
-rpmbuild --quiet "$*" -ta forums.mozilla.org.tar.gz 
+RPMBUILD="rpmbuild --quiet -ta $NAME.tar.gz"
+
+echo "Building RPM"
+if [ "$*" != "" ]; then
+  $RPMBUILD "$*"
+else
+  $RPMBUILD
+fi
 
 rm ca_gen2-$THEME.tar.gz phpbb-release-$PHPBB.tar.gz auth_amo-$AUTH.php forums.mozilla.org.spec
 
