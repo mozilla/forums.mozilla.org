@@ -28,7 +28,7 @@ cat build/forums.mozilla.org.spec | \
 
 tar zcf forums.mozilla.org.tar.gz forums.mozilla.org.spec ca_gen2-$THEME.tar.gz phpbb-release-$PHPBB.tar.gz auth_amo-$AUTH.php
 
-RPMBUILD="rpmbuild --quiet -ta $NAME.tar.gz"
+RPMBUILD="rpmbuild -ta $NAME.tar.gz"
 
 echo "Building RPM"
 if [ "$*" != "" ]; then
