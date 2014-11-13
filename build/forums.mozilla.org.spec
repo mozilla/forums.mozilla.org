@@ -1,10 +1,9 @@
-#XXX: Duplicated
 %define 	theme_version 	%%THEME%%
 %define		phpbb_version	%%PHPBB%%
 %define		auth_version	%%AUTH%%
 %define		build_release	%%RELEASE%%
 
-Name:		forums.mozilla.org
+Name:		%%NAME%%
 Version:	%{phpbb_version}
 Release:	%{?rpm_jenkins_job}theme.svn%{theme_version}.auth.svn%{auth_version}.%{build_release}
 Summary:	test

@@ -27,6 +27,7 @@ echo "svn exporting ca_gen2 theme r$THEME"
 
 echo "generating spec file"
 cat build/forums.mozilla.org.spec | \
+  sed -e "s/%%NAME%%/$BRANCH/g" | \
   sed -e "s/%%PHPBB%%/$PHPBB/g" | \
   sed -e "s/%%THEME%%/$THEME/g" | \
   sed -e "s/%%RELEASE%%/$RELEASE/g" | \
