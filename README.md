@@ -1,3 +1,3 @@
-forums.allizom.org
+forums.mozilla.org
 ==================
 
