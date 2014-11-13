@@ -1,11 +1,18 @@
 #!/usr/bin/env bash
 
-set -eu
+set -eux
 
 BUILD_DIR=`dirname $0`
 cd $BUILD_DIR/..
 
-BRANCH=`git symbolic-ref --short HEAD`
+if [ "$GIT_BRANCH" != ""]; then
+  BRANCH=$GIT_BRANCH
+fi
+
+if [ "$BRANCH" == "" ]; then
+  BRANCH=`git symbolic-ref --short HEAD`
+fi
+
 if [ "$BRANCH" == "master" ]; then
   echo "Can't release from $BRANCH branch"
   exit 1
