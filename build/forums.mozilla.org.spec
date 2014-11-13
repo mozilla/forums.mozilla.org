@@ -51,7 +51,7 @@ ln -s %{_localstatedir}/www/%{name}/localconfig.php %{buildroot}/etc/%{name}.con
 %attr(0750, apache, apache) %{_localstatedir}/www/%{name}/files
 %attr(0750, apache, apache) %{_localstatedir}/www/%{name}/store
 %attr(0750, apache, apache) %{_localstatedir}/www/%{name}/images/avatars/upload
-%config /etc/forums.mozilla.org.conf
+%config /etc/%{name}.conf
 
 %changelog
 
