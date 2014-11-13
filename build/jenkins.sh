@@ -5,7 +5,7 @@ set -eux
 BUILD_DIR=`dirname $0`
 cd $BUILD_DIR/..
 
-if [ "$GIT_BRANCH" != ""]; then
+if [ "$GIT_BRANCH" -ne ""]; then
   BRANCH=$GIT_BRANCH
 fi
 
