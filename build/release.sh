@@ -7,6 +7,14 @@ cd $BUILD_DIR/..
 
 BRANCH=`git symbolic-ref --short HEAD`
 
+if [ "$GIT_BRANCH" != "" ]; then
+  BRANCH=`echo $GIT_BRANCH | sed -e's/^origin\///'`
+fi
+
+if [ "$BRANCH" == "" ]; then
+  BRANCH=`git symbolic-ref --short HEAD`
+fi
+
 if [ "$BRANCH" == "master" ]; then
   echo "Can't release from $BRANCH branch"
   exit 1
