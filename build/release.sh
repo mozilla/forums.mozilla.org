@@ -5,6 +5,13 @@ set -eu
 BUILD_DIR=`dirname $0`
 cd $BUILD_DIR/..
 
+BRANCH=`git symbolic-ref --short HEAD`
+
+if [ "$BRANCH" == "master" ]; then
+  echo "Can't release from $BRANCH branch"
+  exit 1
+fi
+
 source ./package.rc
 
 echo "Getting phpbb-$PHPBB"
