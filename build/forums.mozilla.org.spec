@@ -42,7 +42,7 @@ cp %{SOURCE2} %{buildroot}%{_localstatedir}/www/%{name}/includes/auth/auth_amo.p
 cp %{SOURCE3} %{buildroot}%{_localstatedir}/www/%{name}/config.php
 cp %{SOURCE4} %{buildroot}%{_localstatedir}/www/%{name}/localconfig.php
 mkdir %{buildroot}/etc
-ln -s %{_localstatedir}/www/%{name}/localconfig.php %{buildroot}/etc/forums.mozilla.org.conf
+ln -s %{_localstatedir}/www/%{name}/localconfig.php %{buildroot}/etc/%{name}.conf
 
 %files
 %doc README.md
