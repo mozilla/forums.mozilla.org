@@ -12,6 +12,8 @@ if [ "$BRANCH" == "master" ]; then
   exit 1
 fi
 
+echo "Releasing for $BRANCH"
+
 source ./package.rc
 
 echo "Getting phpbb-$PHPBB"
@@ -32,11 +34,11 @@ cat build/forums.mozilla.org.spec | \
   sed -e "s/%%THEME%%/$THEME/g" | \
   sed -e "s/%%RELEASE%%/$RELEASE/g" | \
   sed -e "s/%%AUTH%%/$AUTH/g" > \
-  forums.mozilla.org.spec
+  $BRANCH.spec
 
-tar zcf forums.mozilla.org.tar.gz forums.mozilla.org.spec ca_gen2-$THEME.tar.gz phpbb-release-$PHPBB.tar.gz auth_amo-$AUTH.php
+tar zcf $BRANCH.tar.gz $BRANCH.spec ca_gen2-$THEME.tar.gz phpbb-release-$PHPBB.tar.gz auth_amo-$AUTH.php
 
-RPMBUILD="rpmbuild -ta $NAME.tar.gz"
+RPMBUILD="rpmbuild -ta $BRANCH.tar.gz"
 
 echo "Building RPM"
 if [ "$*" != "" ]; then
@@ -45,9 +47,9 @@ else
   $RPMBUILD
 fi
 
-rm ca_gen2-$THEME.tar.gz phpbb-release-$PHPBB.tar.gz auth_amo-$AUTH.php forums.mozilla.org.spec
+rm ca_gen2-$THEME.tar.gz phpbb-release-$PHPBB.tar.gz auth_amo-$AUTH.php $BRANCH.spec
 
-mv $HOME/rpmbuild/SRPMS/$NAME*.rpm . 
-mv $HOME/rpmbuild/RPMS/noarch/$NAME*.rpm .
+mv $HOME/rpmbuild/SRPMS/$BRANCH*.rpm . 
+mv $HOME/rpmbuild/RPMS/noarch/$BRANCH*.rpm .
 
 
