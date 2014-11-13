@@ -5,8 +5,8 @@ set -eux
 BUILD_DIR=`dirname $0`
 cd $BUILD_DIR/..
 
-if [ "$GIT_BRANCH" -ne ""]; then
-  BRANCH=$GIT_BRANCH
+if [ "$GIT_BRANCH" != "" ]; then
+  BRANCH=`echo $GIT_BRANCH | sed -e's/^origin\///'`
 fi
 
 if [ "$BRANCH" == "" ]; then
